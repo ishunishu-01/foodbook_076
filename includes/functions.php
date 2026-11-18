@@ -1,8 +1,6 @@
 <?php
-// ============================================================
-// FoodBook - Helper Functions
-// Student: Ishara Nishshanka | ITT/2021/076
-// ============================================================
+// Helper functions for FoodBook project
+// Student: Ishara Nishshanka (ITT/2021/076)
 
 /**
  * Sanitize user input

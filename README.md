@@ -1,7 +1,7 @@
-# 🍳 FoodBook - Digital Recipe Book Web Application
+# FoodBook - Digital Recipe Book
 
-**Course Module:** ICT 1209 – Web Technologies  
-**Project:** Mini Project – Individual Submission  
+**Course Module:** ICT 1209 - Web Technologies  
+**Project:** Mini Project (Individual Submission)  
 **Student Name:** Ishara Nishshanka  
 **Registration Number:** ITT/2021/076  
 **Department:** Department of ICT  
@@ -10,187 +10,138 @@
 
 ---
 
-## 📖 1. Project Overview
+## 1. Project Overview
 
-**FoodBook** is an interactive, full-stack web application designed for food lovers and culinary creators. Users can discover culinary recipes, filter dishes by meal type or ingredient in real time, view detailed cooking steps via interactive modal dialogs, register a personal account, and publish their own signature recipes.
+FoodBook is a web application created using HTML, CSS, Bootstrap, JavaScript, PHP, and MySQL. It allows users to browse food recipes, search by title or ingredient in real time, filter by meal category, register an account, and add their own recipes.
 
-### 🌟 Key Highlights
-- **Responsive Design:** Fluid layout across mobile, tablet, and desktop viewports using **Bootstrap 5.3** and custom CSS3.
-- **Dynamic JavaScript Interactivity:** Real-time client-side search without page reloads, interactive hero slider, modal popups, and live form validation.
-- **Secure Backend Integration:** Modular **PHP 8** architecture using PDO/MySQLi prepared statements, session-based authentication, and `password_hash()` bcrypt encryption.
-- **Relational Database:** MySQL database schema named `foodbook` featuring relational integrity with foreign keys and cascade delete rules.
-
----
-
-## 🛠️ 2. Technologies Used
-
-| Layer | Technologies |
-|---|---|
-| **Frontend** | HTML5, CSS3, JavaScript (ES6+), Bootstrap 5.3.2, Bootstrap Icons |
-| **Backend** | PHP 8.x (Session management, Prepared Statements, Input Sanitization) |
-| **Database** | MySQL (phpMyAdmin, InnoDB engine, UTF-8 unicode collation) |
-| **Local Server** | XAMPP / WAMP / LAMP |
+### Technologies Used:
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap 5.3
+- **Backend:** PHP 8
+- **Database:** MySQL (phpMyAdmin)
+- **Environment:** XAMPP
 
 ---
 
-## 🚀 3. Features Implemented
+## 2. Main Features
 
-### 3.1. Frontend & User Experience (20% + 15%)
-1. **Responsive Multi-Page Structure:**
-   - `index.php`: Landing page with dynamic recipe showcase, hero slider, stats, and search bar.
-   - `dashboard.php`: Protected user portal for publishing and managing recipes.
-   - `contact.php`: Feedback and inquiry page with accordion FAQ and contact cards.
-   - `auth/login.php` & `auth/register.php`: Clean authentication pages.
-2. **Interactive JavaScript Features (Meets & exceeds 3 required features):**
-   - **Dynamic Content Updates:** Instant client-side search and category filtering with dynamic recipe counts and "No Results" fallback.
-   - **Interactive Image Slider:** Auto-advancing hero banner (4.5s interval) with manual previous/next buttons, navigation dots, and pause-on-hover.
-   - **Form Validation:** Comprehensive client-side validation (`js/validation.js`) with regex email checking, real-time password strength meter, and character counter.
-   - **Smooth Scrolling:** Smooth navigation offset for all internal anchor links.
-   - **Event Handling:** Interactive Quick View modal popups, card hover lift effects, and category pills.
-   - **Custom Animations:** IntersectionObserver-driven scroll animations (`fadeInUp`) and animated statistics counters.
+### Frontend (HTML, CSS, Bootstrap & JavaScript)
+- **Responsive Layout:** Adapts to mobile, tablet, and desktop screens using Bootstrap 5.
+- **Interactive Image Slider:** Auto-playing hero slider with previous and next controls.
+- **Dynamic Content Search & Filter:** Instant client-side search by keyword and category dropdown without page refresh.
+- **Form Validation:** Client-side validation for required fields, email format, and password length.
+- **Quick View Modal:** Click on any recipe card to open a modal popup with full ingredients and step-by-step instructions.
 
-### 3.2. Backend & Database Integration (20% + 20% + 10%)
-1. **User Authentication:**
-   - Registration with password confirmation, format validation, and `password_hash()` bcrypt encryption.
-   - Secure login verification via `password_verify()` with session tracking (`$_SESSION['user_id']`).
-   - Clean session destruction on logout (`auth/logout.php`).
-2. **Recipe CRUD (Create, Read, Update, Delete):**
-   - Authenticated users can submit recipes with titles, meal categories, preparation steps, ingredients, cooking times, and servings.
-   - Users can safely delete their own recipes from their dashboard.
-3. **Contact Form Handling:**
-   - Submissions are sanitized and stored in the MySQL `messages` table with flash message feedback.
+### Backend (PHP & MySQL)
+- **User Authentication:** 
+  - User registration (`register.php`) with password hashing using `password_hash()`.
+  - User login (`login.php`) using `password_verify()` and PHP sessions.
+  - User logout (`logout.php`) to safely destroy sessions.
+- **Recipe Management (Dashboard):**
+  - Authenticated users can view recipes they created.
+  - Users can submit new recipes (title, category, cooking time, servings, ingredients, instructions).
+  - Users can delete their own recipes.
+- **Contact Form:**
+  - Visitors can submit questions or messages, which are saved in the `messages` table in MySQL.
 
 ---
 
-## 🗄️ 4. Database Schema (`foodbook`)
+## 3. Database Structure (`foodbook`)
 
-The application connects to a MySQL database named **`foodbook`**. The complete dump is provided in [`database.sql`](database.sql).
+The application uses a MySQL database named **`foodbook`**. The SQL file is included in this repository as `database.sql`.
 
-### Table: `users`
-| Column | Type | Attributes | Description |
-|---|---|---|---|
-| `id` | INT(11) | AUTO_INCREMENT, PRIMARY KEY | Unique user ID |
-| `username` | VARCHAR(50) | NOT NULL | User's handle |
-| `email` | VARCHAR(100) | NOT NULL, UNIQUE | User's email |
-| `password` | VARCHAR(255) | NOT NULL | Hashed password (`password_hash`) |
-| `created_at` | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Registration timestamp |
+### Tables:
+1. **`users`** - Stores registered user details:
+   - `id` (INT, Primary Key, Auto Increment)
+   - `username` (VARCHAR)
+   - `email` (VARCHAR, Unique)
+   - `password` (VARCHAR, hashed with bcrypt)
+   - `created_at` (TIMESTAMP)
 
-### Table: `recipes`
-| Column | Type | Attributes | Description |
-|---|---|---|---|
-| `id` | INT(11) | AUTO_INCREMENT, PRIMARY KEY | Unique recipe ID |
-| `user_id` | INT(11) | NOT NULL, FOREIGN KEY | References `users(id)` ON DELETE CASCADE |
-| `title` | VARCHAR(150) | NOT NULL | Recipe title |
-| `description` | TEXT | NULL | Short summary |
-| `category` | VARCHAR(50) | NOT NULL | Breakfast, Lunch, Dinner, etc. |
-| `ingredients` | TEXT | NOT NULL | List of ingredients |
-| `instructions`| TEXT | NOT NULL | Preparation steps |
-| `cooking_time`| INT(11) | DEFAULT 30 | Time in minutes |
-| `servings` | INT(11) | DEFAULT 4 | Servings yield |
-| `image_url` | VARCHAR(500) | NULL | Food photograph URL |
-| `rating` | DECIMAL(3,1) | DEFAULT 4.5 | Community rating |
-| `views` | INT(11) | DEFAULT 0 | View counter |
-| `created_at` | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Creation timestamp |
+2. **`recipes`** - Stores submitted recipes:
+   - `id` (INT, Primary Key, Auto Increment)
+   - `user_id` (INT, Foreign Key referencing `users.id`)
+   - `title` (VARCHAR)
+   - `description` (TEXT)
+   - `category` (VARCHAR - Breakfast, Lunch, Dinner, Desserts, Drinks)
+   - `ingredients` (TEXT)
+   - `instructions` (TEXT)
+   - `cooking_time` (INT)
+   - `servings` (INT)
+   - `image_url` (VARCHAR)
+   - `rating` (DECIMAL)
+   - `views` (INT)
+   - `created_at` (TIMESTAMP)
 
-### Table: `messages`
-| Column | Type | Attributes | Description |
-|---|---|---|---|
-| `id` | INT(11) | AUTO_INCREMENT, PRIMARY KEY | Unique message ID |
-| `name` | VARCHAR(100) | NOT NULL | Sender name |
-| `email` | VARCHAR(100) | NOT NULL | Sender email |
-| `subject` | VARCHAR(200) | DEFAULT 'General Inquiry' | Subject |
-| `message` | TEXT | NOT NULL | Query body |
-| `created_at` | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Submission timestamp |
+3. **`messages`** - Stores contact form inquiries:
+   - `id` (INT, Primary Key, Auto Increment)
+   - `name` (VARCHAR)
+   - `email` (VARCHAR)
+   - `subject` (VARCHAR)
+   - `message` (TEXT)
+   - `created_at` (TIMESTAMP)
 
 ---
 
-## ⚙️ 5. Step-by-Step Installation & Setup Guide
+## 4. How to Run the Project Locally (XAMPP)
 
-### Step 1: Install XAMPP
-Download and install [XAMPP](https://www.apachefriends.org/) (PHP 8.x recommended).
-
-### Step 2: Copy Project to `htdocs`
-Copy this project folder into your XAMPP web root directory:
+### Step 1: Clone or Copy Project Files
+Place the project folder inside your XAMPP `htdocs` directory:
 ```
 C:\xampp\htdocs\foodbook\
 ```
-*(Or keep in your working folder and configure a VirtualHost).*
 
-### Step 3: Start Apache & MySQL
+### Step 2: Start Apache and MySQL
 1. Open the **XAMPP Control Panel**.
-2. Click **Start** next to **Apache**.
-3. Click **Start** next to **MySQL**.
+2. Click **Start** for **Apache**.
+3. Click **Start** for **MySQL**.
 
-### Step 4: Import Database (`foodbook`)
-1. Open your browser and navigate to **[http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)**.
-2. Click on **New** on the left sidebar.
-3. In the "Database name" field, enter `foodbook` and select collation `utf8mb4_unicode_ci`, then click **Create**.
-4. With `foodbook` selected, click the **Import** tab at the top.
-5. Click **Choose File** and select the [`database.sql`](database.sql) file located in the project root.
-6. Click **Import** at the bottom. All tables (`users`, `recipes`, `messages`) and sample data will be created automatically.
+### Step 3: Import the Database
+1. Open your web browser and go to: `http://localhost/phpmyadmin/`
+2. Click **New** on the left menu and create a database named `foodbook`.
+3. Select the `foodbook` database, then click on the **Import** tab.
+4. Choose the `database.sql` file from the project root folder.
+5. Click **Import** at the bottom of the page.
 
-### Step 5: Verify Database Configuration
-Open `includes/db.php` and ensure the database credentials match your local setup:
-```php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'foodbook');
-```
-
-### Step 6: Launch Application
-Open your browser and visit:
+### Step 4: Open in Browser
+Visit the following URL in your web browser:
 ```
 http://localhost/foodbook/
 ```
 
 ---
 
-## 🔑 6. Demo User Credentials
+## 5. Demo Login Credentials
 
-For testing and grading convenience, sample accounts are pre-populated in `database.sql`:
+You can use the following default account to test the login and dashboard:
 
-| Role | Username | Email | Password |
-|---|---|---|---|
-| **Admin Chef** | `ishara_admin` | `ishara@foodbook.com` | `Password123` |
-| **Community Chef** | `chef_kamal` | `kamal@foodbook.com` | `Password123` |
+- **Email:** `itt2021076@tec.rjt.ac.lk`
+- **Password:** `ITT/2021/076`
 
-*Note: You can also register a brand new account at `auth/register.php` anytime.*
+*(You can also register a new account on the registration page).*
 
 ---
 
-## 📁 7. Project Folder Structure
+## 6. Folder Structure
 
 ```
-itt2021076/
-│── auth/
-│   ├── login.php               # User login authentication page
-│   ├── logout.php              # Session destruction logic
-│   └── register.php           # User registration page
-│── css/
-│   └── style.css               # Custom responsive styles & animations
-│── js/
-│   ├── main.js                 # Slider, search filter, modal & animations
-│   └── validation.js           # Client-side form validation routines
-│── includes/
-│   ├── db.php                  # MySQL database connection
-│   ├── functions.php           # Helper functions & query abstractions
-│   ├── recipe_handler.php      # Recipe CRUD processor (Add/Delete)
-│   └── contact_handler.php     # Contact form submission processor
-│── contact.php                 # Contact form & FAQ page
-│── dashboard.php               # Protected user dashboard
-│── index.php                   # Main home page & recipe catalog
-│── database.sql                # Complete MySQL database export
-└── README.md                   # Setup documentation & project details
+foodbook/
+|-- auth/
+|   |-- login.php          # User login page
+|   |-- logout.php         # Logout logic
+|   |-- register.php       # User registration page
+|-- css/
+|   |-- style.css          # Custom CSS styles
+|-- js/
+|   |-- main.js            # Slider, search filter, and modal logic
+|   |-- validation.js      # Client-side form validation
+|-- includes/
+|   |-- db.php             # Database connection
+|   |-- functions.php      # Helper functions
+|   |-- recipe_handler.php # Add and delete recipe logic
+|   |-- contact_handler.php# Contact form processing
+|-- contact.php            # Contact and FAQ page
+|-- dashboard.php          # User recipe dashboard
+|-- index.php              # Homepage and recipe list
+|-- database.sql           # Database export file
+|-- README.md              # Project documentation
 ```
-
----
-
-## 👥 8. Author & Academic Declaration
-
-- **Student:** Ishara Nishshanka
-- **Registration Number:** ITT/2021/076
-- **Module:** ICT 1209 – Web Technologies Mini Project
-- **Institution:** Rajarata University of Sri Lanka
-
-*I hereby declare that this mini-project is an original piece of work developed by me in partial fulfillment of the continuous assessment requirements for ICT 1209.*

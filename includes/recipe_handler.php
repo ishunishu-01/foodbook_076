@@ -1,8 +1,6 @@
 <?php
-// ============================================================
-// FoodBook - Recipe CRUD Handler
-// Student: Ishara Nishshanka | ITT/2021/076
-// ============================================================
+// Recipe Handler (Add, Delete)
+// Student: Ishara Nishshanka (ITT/2021/076)
 session_start();
 require_once 'db.php';
 require_once 'functions.php';

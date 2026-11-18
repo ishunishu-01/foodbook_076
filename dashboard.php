@@ -1,10 +1,9 @@
 <?php
-// ============================================================
-// FoodBook - User Dashboard & Recipe Manager
-// Student Name : Ishara Nishshanka
-// Registration : ITT/2021/076
-// Course       : ICT 1209 – Web Technologies Mini Project
-// ============================================================
+/*
+  FoodBook - User Dashboard
+  Student: Ishara Nishshanka (ITT/2021/076)
+  Course: ICT 1209 - Web Technologies Mini Project
+*/
 session_start();
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
@@ -111,10 +110,10 @@ $errorMessage = $_GET['error'] ?? '';
     <div class="bg-white rounded-4 p-4 shadow-sm border mb-4">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
         <div>
-          <span class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">Creator Hub</span>
-          <h2 class="fw-bold text-dark mb-1">Welcome back, <?= htmlspecialchars($username) ?>! 👋</h2>
+          <span class="badge bg-danger text-white rounded-pill px-3 py-1 mb-2">My Account</span>
+          <h2 class="fw-bold text-dark mb-1">Welcome, <?= htmlspecialchars($username) ?></h2>
           <p class="text-muted small mb-0">
-            Manage your published recipes, view analytics, and publish delicious new culinary instructions.
+            Manage your recipes or submit a new recipe below.
           </p>
         </div>
         <div>

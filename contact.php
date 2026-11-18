@@ -1,10 +1,9 @@
 <?php
-// ============================================================
-// FoodBook - Contact Page
-// Student Name : Ishara Nishshanka
-// Registration : ITT/2021/076
-// Course       : ICT 1209 – Web Technologies Mini Project
-// ============================================================
+/*
+  FoodBook - Contact Page
+  Student: Ishara Nishshanka (ITT/2021/076)
+  Course: ICT 1209 - Web Technologies Mini Project
+*/
 session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
 $username = $_SESSION['username'] ?? '';
@@ -123,8 +122,7 @@ unset($_SESSION['contact_success'], $_SESSION['contact_errors'], $_SESSION['cont
             </div>
             <h5 class="fw-bold mb-1">Email Inquiry</h5>
             <p class="text-muted small mb-0">
-              <a href="mailto:ishara@foodbook.com" class="text-decoration-none text-muted">ishara@foodbook.com</a><br>
-              <a href="mailto:itt2021076@rjt.ac.lk" class="text-decoration-none text-muted">itt2021076@rjt.ac.lk</a>
+              <a href="mailto:itt2021076@tec.rjt.ac.lk" class="text-decoration-none text-muted">itt2021076@tec.rjt.ac.lk</a>
             </p>
           </div>
         </div>

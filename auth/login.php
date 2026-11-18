@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-// FoodBook - User Login
-// Student: Ishara Nishshanka | ITT/2021/076
-// ============================================================
+/*
+  FoodBook - User Login
+  Student: Ishara Nishshanka (ITT/2021/076)
+*/
 session_start();
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <!-- Demo credentials hint -->
                     <div class="mt-3 p-3 bg-light rounded small text-muted">
                         <i class="fas fa-info-circle me-1"></i>
-                        <strong>Demo:</strong> ishara@foodbook.com / password
+                        <strong>Demo:</strong> itt2021076@tec.rjt.ac.lk / ITT/2021/076
                     </div>
 
                     <hr class="my-4">

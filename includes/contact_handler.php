@@ -1,8 +1,6 @@
 <?php
-// ============================================================
-// FoodBook - Contact Form Submission Handler
-// Student: Ishara Nishshanka | ITT/2021/076
-// ============================================================
+// Contact form submission handler
+// Student: Ishara Nishshanka (ITT/2021/076)
 session_start();
 require_once 'db.php';
 require_once 'functions.php';

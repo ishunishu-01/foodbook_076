@@ -1,8 +1,8 @@
 <?php
-// ============================================================
-// FoodBook - User Registration
-// Student: Ishara Nishshanka | ITT/2021/076
-// ============================================================
+/*
+  FoodBook - User Registration
+  Student: Ishara Nishshanka (ITT/2021/076)
+*/
 session_start();
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
