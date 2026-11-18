@@ -67,8 +67,8 @@ CREATE TABLE `messages` (
 -- Default password: Password123
 -- ------------------------------------------------------------
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'ishara_admin', 'ishara@foodbook.com', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHeFj05eK8s7rS6WpL0cbn8hJd5y7yC6w2', '2026-11-18 10:00:00'),
-(2, 'chef_kamal', 'kamal@foodbook.com', '$2y$10$e0MYzXyjpJS7Pd0RVvHwHeFj05eK8s7rS6WpL0cbn8hJd5y7yC6w2', '2026-11-18 10:30:00');
+(1, 'ishara_admin', 'ishara@foodbook.com', '$2y$10$MnsJAQ65b59me3ZX5ZMlmeftXdQudZs0AQkPk1v4srHGsQWbRxiUS', '2026-11-18 10:00:00'),
+(2, 'chef_kamal', 'kamal@foodbook.com', '$2y$10$MnsJAQ65b59me3ZX5ZMlmeftXdQudZs0AQkPk1v4srHGsQWbRxiUS', '2026-11-18 10:30:00');
 
 -- ------------------------------------------------------------
 -- Dumping data for table `recipes`
